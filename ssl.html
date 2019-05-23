@@ -1,12 +1,20 @@
 <!doctype html>
 <html>
-<head><title>secureConnectionStart test</title>
+<head>
+	<title>secureConnectionStart test</title>
+	<style>
+	mark.good{background-color: rgba(200,0,0,0.5);}
+	mark.bad{background-color: rgba(0,200,0,0.5);}
+	table td:nth-child(2){text-align: right};
+	</style>
 </head>
 <body>
 <h1>secureConnectionStart test</h1>
-<p>The navigation timing and resource timing property <pre>secureConnectionStart</pre> should always be present, and should be either a timestamp (where a connection is secure) or <pre>0</pre> where a connection is insecure, or a secure connection is reused.</p>
+<p>The navigation timing and resource timing property <code>secureConnectionStart</code> should always be present, and should be either a timestamp (where a connection is secure) or <code>0</code> where a connection is insecure, or a secure connection is reused.</p>
+<p></p>
 <h2>Results</h2>
-<div id="results"></div>
+<p>This page is hosted on H/2 and requests a resource from another H/2 host. We should see non-zero results for NT1, NT2 and RT2:</p>
+<div id="results">Waiting a second...</div>
 
 <img src="https://www.akamai.com/us/en/multimedia/images/logo/akamai-logo.png" style="visibility:hidden;display:none;height:0"/>
 <script>
@@ -14,8 +22,14 @@ window.setTimeout(() => {
 	let nt1ssl = performance.timing.secureConnectionStart;
 	let nt2ssl = performance.getEntriesByType("navigation")[0].secureConnectionStart;
 	let rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("akamai-logo.png"))[0].secureConnectionStart;
-	let text = `NT1 result: ${nt1ssl}<br>NT2 result: ${nt2ssl}<br>RT2 result: ${rt2ssl}`;
-	document.getElementById("results").innerHTML = text;
+	let results_body = `
+	<table>
+	<tr><th>API</th><th>secureConnectionStart</th></tr>
+	<tr><td>Navigation Timing Level 1</td><td><mark class="${nt1ssl > 0 ? 'good' : 'bad'}">${nt1ssl}</mark></td></tr>
+	<tr><td>Navigation Timing Level 2</td><td><mark class="${nt2ssl > 0 ? 'good' : 'bad'}">${nt2ssl}</mark></td></tr>
+	<tr><td>Resource Timing Level 2</td><td><mark class="${rt2ssl > 0 ? 'good' : 'bad'}">${rt2ssl}</mark></td></tr>
+	</table>`;
+	document.getElementById("results").innerHTML = results_body;
 },1000)
 </script>
 </body>
