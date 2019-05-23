@@ -14,15 +14,22 @@
 <p>The navigation timing and resource timing property <code>secureConnectionStart</code> should always be present, and should be either a timestamp (where a connection is secure) or <code>0</code> where a connection is insecure, or a secure connection is reused.</p>
 <p></p>
 <h2>Results</h2>
-<p>This page is hosted on H/2 and requests a resource from another H/2 host. We should see non-zero results for NT1, NT2 and RT2:</p>
+<p>This page is hosted on H/2 and requests a resource from another H/2 host. We should see non-zero results for NT1, NT2 and RT2. -1 means the API isn't available.</p>
 <div id="results">Waiting a second...</div>
 
 <img src="https://www.webpagetest.org/images/logo_wpt.png" style="visibility:hidden;display:none;height:0"/>
 <script>
 window.setTimeout(() => {
 	let nt1ssl = performance.timing.secureConnectionStart;
-	let nt2ssl = performance.getEntriesByType("navigation")[0].secureConnectionStart;
-	let rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("logo_wpt.png"))[0].secureConnectionStart;
+	let nt2ssl = -1;
+	let rt2ssl = -1;
+	try {
+		let nt = performance.getEntriesByType("navigation");
+		if (nt.length > 0) {
+			nt2ssl = nt[0].secureConnectionStart;
+		}
+	} finally {};
+	try {rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("logo_wpt.png"))[0].secureConnectionStart;} finally {};
 	let results_body = `
 	<table>
 	<tr><th>API</th><th>secureConnectionStart</th></tr>
