@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head><title>secureConnectionStart test</title>
+</head>
+<body>
+<h1>secureConnectionStart test</h1>
+<p>The navigation timing and resource timing property <pre>secureConnectionStart</pre> should always be present, and should be either a timestamp (where a connection is secure) or <pre>0</pre> where a connection is insecure, or a secure connection is reused.</p>
+<h2>Results</h2>
+<div id="results"></div>
+
+<img src="https://www.akamai.com/us/en/multimedia/images/logo/akamai-logo.png" style="visibility:hidden;display:none;height:0"/>
+<script>
+window.setTimeout(() => {
+	let nt1ssl = performance.timing.secureConnectionStart;
+	let nt2ssl = performance.getEntriesByType("navigation")[0].secureConnectionStart;
+	let rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("akamai-logo.png"))[0].secureConnectionStart;
+	let text = `NT1 result: ${nt1ssl}<br>NT2 result: ${nt2ssl}<br>RT2 result: ${rt2ssl}`;
+	document.getElementById("results").innerHTML = text;
+},1000)
+</script>
+</body>
+</html>
