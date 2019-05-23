@@ -22,7 +22,7 @@
 window.setTimeout(() => {
 	let nt1ssl = performance.timing.secureConnectionStart;
 	let nt2ssl = performance.getEntriesByType("navigation")[0].secureConnectionStart;
-	let rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("alogo_wpt.png"))[0].secureConnectionStart;
+	let rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("logo_wpt.png"))[0].secureConnectionStart;
 	let results_body = `
 	<table>
 	<tr><th>API</th><th>secureConnectionStart</th></tr>
