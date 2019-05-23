@@ -17,12 +17,12 @@
 <p>This page is hosted on H/2 and requests a resource from another H/2 host. We should see non-zero results for NT1, NT2 and RT2:</p>
 <div id="results">Waiting a second...</div>
 
-<img src="https://www.akamai.com/us/en/multimedia/images/logo/akamai-logo.png" style="visibility:hidden;display:none;height:0"/>
+<img src="https://www.webpagetest.org/images/logo_wpt.png" style="visibility:hidden;display:none;height:0"/>
 <script>
 window.setTimeout(() => {
 	let nt1ssl = performance.timing.secureConnectionStart;
 	let nt2ssl = performance.getEntriesByType("navigation")[0].secureConnectionStart;
-	let rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("akamai-logo.png"))[0].secureConnectionStart;
+	let rt2ssl = performance.getEntriesByType("resource").filter(r => r.name.includes("alogo_wpt.png"))[0].secureConnectionStart;
 	let results_body = `
 	<table>
 	<tr><th>API</th><th>secureConnectionStart</th></tr>
