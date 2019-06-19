@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NetworkInformation test</title>
+	<style>
+	pre { display: inline; font-size: 120%; }
+	</style>
+</head>
+<body>
+
+    <p id="ua">No user agent discovered (navigator.userAgent)</p>
+    <p id="ni">No network information discovered (navigator.connection)</p>
+    
+<script>
+let ua = navigator.userAgent;
+let ni = navigator.connection;
+if (ua) {
+    let ua_e = document.getElementById('ua');
+    ua_e.innerHTML = `User Agent:<br><pre>${ua}</pre>`;
+}
+if (ni) {
+    let ni_e = document.getElementById('ni');
+    ni_e.innerHTML = `effectiveType: <pre>${ni.effectiveType}</pre><br>downlink: <pre>${ni.downlink}Mbps</pre><br>rtt: <pre>${ni.rtt}ms</pre>`;
+}
+</script>
+</body>
+</html>
