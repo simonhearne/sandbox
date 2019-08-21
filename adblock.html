@@ -1,13 +1,14 @@
 <html>
     <body>
         <div id="wrapfabtest">
-            <div class="adBanner"></div>
+            <div class="adBanner">&nbsp;</div>
             </div>
         </div>
         <script>
-        window.onload(function() {
+        window.addEventListener('load', function() {
             let el = document.getElementById('wrapfabtest');
-            console.log(el);
-        })</script>
+            window.adblock = el.getBoundingClientRect().height === 0;
+        });
+        </script>
     </body>
 </html>
