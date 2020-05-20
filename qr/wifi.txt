@@ -1,0 +1,1 @@
+WIFI:T:WPA;S:My Guest Wifi;P:secretPhrase123!;H:true;
