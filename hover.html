@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        @media (hover: none) {
+            .hover-none {
+                background-color: green;
+            }
+        }
+        @media (any-hover: none) {
+            .anyhover-none {
+                background-color: green;
+            }
+        }
+        @media (hover: none) and (pointer: fine) {
+            .hovernone-pointerfine {
+                background-color: green;
+            }
+        }
+    </style>
+    <body>
+        <h1>Test mobile CSS detection</h1>
+        <p>The following items will be green when matched</p>
+        <p class="none">No media query</p>
+        <p class="hover-none">hover: none</p>
+        <p class="anyhover-none">any-hover: none</p>
+        <p class="hovernone-pointerfine">No media query</p>
+    </body>
+</html>
