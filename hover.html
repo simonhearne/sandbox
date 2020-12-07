@@ -16,13 +16,19 @@
                 background-color: green;
             }
         }
+        @media (any-hover: on-demand), (any-hover: none) {
+            .anyhover-both {
+                background-color: green;
+            }
+        }
     </style>
     <body>
         <h1>Test mobile CSS detection</h1>
         <p>The following items will be green when matched</p>
         <p class="none">No media query</p>
-        <p class="hover-none">hover: none</p>
-        <p class="anyhover-none">any-hover: none</p>
-        <p class="hovernone-pointerfine">No media query</p>
+        <p class="hover-none">@media (hover: none)</p>
+        <p class="anyhover-none">@media (any-hover: none)</p>
+        <p class="hovernone-pointerfine">@media (hover: none) and (pointer: fine)</p>
+        <p class="anyhover-both">@media (any-hover: on-demand), (any-hover: none)</p>
     </body>
 </html>
